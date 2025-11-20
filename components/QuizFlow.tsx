@@ -180,9 +180,9 @@ export const QuizFlow: React.FC<QuizFlowProps> = ({ onComplete, initialAnswers =
             key={`ja-${currentIndex}`}
             onClick={() => handleAnswer(true)}
             disabled={isLocked}
-            className={`group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl focus:outline-none shadow-sm active:scale-[0.98] active:bg-red-50 active:border-brand-red dark:active:bg-red-900/20 w-full text-left transition-transform ${
+            className={`group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl focus:outline-none shadow-sm active:scale-[0.98] active:bg-red-100 active:border-brand-red dark:active:bg-red-900/30 w-full text-left transition-transform ${
               isJaSelected 
-                ? 'border-brand-red bg-red-50 dark:bg-red-900/20 dark:border-brand-red' 
+                ? 'border-brand-red bg-red-100 dark:bg-red-900/30 dark:border-brand-red' 
                 : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 md:hover:border-brand-red md:hover:bg-red-50 dark:md:hover:bg-red-900/10'
             } dark:text-white`}
           >
@@ -204,9 +204,9 @@ export const QuizFlow: React.FC<QuizFlowProps> = ({ onComplete, initialAnswers =
             key={`nein-${currentIndex}`}
             onClick={() => handleAnswer(false)}
             disabled={isLocked}
-            className={`group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl focus:outline-none shadow-sm active:scale-[0.98] active:bg-red-50 active:border-brand-red dark:active:bg-red-900/20 w-full text-left transition-transform ${
+            className={`group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl focus:outline-none shadow-sm active:scale-[0.98] active:bg-red-100 active:border-brand-red dark:active:bg-red-900/30 w-full text-left transition-transform ${
               isNeinSelected 
-                ? 'border-brand-red bg-red-50 dark:bg-red-900/20 dark:border-brand-red' 
+                ? 'border-brand-red bg-red-100 dark:bg-red-900/30 dark:border-brand-red' 
                 : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 md:hover:border-brand-red md:hover:bg-red-50 dark:md:hover:bg-red-900/10'
             } dark:text-white`}
           >

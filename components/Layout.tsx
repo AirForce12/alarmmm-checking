@@ -81,7 +81,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, onGoHome }) => {
              <img 
                src={darkMode ? BRAND_ASSETS.logoWhite : BRAND_ASSETS.logoBlack} 
                alt="BLOCKALARM" 
-               className="h-8 sm:h-10 w-auto md:h-12 transition-all"
+               className="h-10 sm:h-10 w-auto md:h-12 transition-all"
              />
              <div className="hidden xs:flex flex-col ml-2 sm:ml-3 border-l pl-2 sm:pl-3 border-gray-300 dark:border-gray-700 text-left">
                 <span className="text-[10px] sm:text-xs font-bold text-brand-red tracking-widest uppercase">Einbruchschutz-Check</span>
