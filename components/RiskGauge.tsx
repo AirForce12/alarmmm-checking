@@ -6,6 +6,9 @@ interface RiskGaugeProps {
 }
 
 export const RiskGauge: React.FC<RiskGaugeProps> = ({ score }) => {
+  // Check if dark mode is enabled
+  const isDarkMode = document.documentElement.classList.contains('dark');
+  
   return (
     <div className="w-full max-w-[500px] mx-auto relative">
       <GaugeComponent
@@ -39,7 +42,7 @@ export const RiskGauge: React.FC<RiskGaugeProps> = ({ score }) => {
           type: "needle",
           elastic: true,
           animationDelay: 0,
-          color: '#1F2937', // Dark Gray Needle
+          color: isDarkMode ? '#94A3B8' : '#64748B', // Light grey in dark mode, medium grey in light mode
           length: 0.80,
           width: 15,
         }}
@@ -50,7 +53,7 @@ export const RiskGauge: React.FC<RiskGaugeProps> = ({ score }) => {
               fontSize: '45px', 
               fontFamily: 'Inter, sans-serif',
               fontWeight: 'bold',
-              fill: '#1F2937',
+              fill: isDarkMode ? '#E2E8F0' : '#1F2937',
               textShadow: 'none' 
             },
             matchColorWithArc: true

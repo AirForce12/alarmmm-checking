@@ -25,7 +25,7 @@ const RISK_COMBINATIONS: RiskCombination[] = [
       checkAnswerMatchesRisk(answers, 'q_light_1'), // No lights = NO (Risk)
     weightPenalty: 10,
     recommendation: 'Kombinieren Sie Bewegungsmelder mit Videoüberwachung in toten Winkeln.',
-    productMatch: 'Videoüberwachung & Außenlicht',
+    productMatch: 'BLOCKALARM® Videoüberwachung',
     productUrl: 'https://www.blockalarm.de/videoueberwachung/'
   },
   {
@@ -38,8 +38,8 @@ const RISK_COMBINATIONS: RiskCombination[] = [
       checkAnswerMatchesRisk(answers, 'q_elec_1'), // No Alarm (Risk)
     weightPenalty: 15,
     recommendation: 'Mechanische Sicherung verzögert nur. Ohne Alarm haben Täter zu viel Zeit. Dringend nachrüsten!',
-    productMatch: 'Qolsys IQ Panel 4',
-    productUrl: 'https://www.blockalarm.de/qolsys-iq-panel-4/'
+    productMatch: 'Die Funkalarmanlage QANTUM®',
+    productUrl: 'https://www.blockalarm.de/qantum-funkalarmanlage-sicherheit-fuer-ihr-zuhause/'
   },
   {
     id: 'combo_value_protection',
@@ -51,7 +51,7 @@ const RISK_COMBINATIONS: RiskCombination[] = [
       checkAnswerMatchesRisk(answers, 'q_elec_1'), // No Alarm (Risk)
     weightPenalty: 12,
     recommendation: 'Installieren Sie einen Tresor und sichern Sie den Raum elektronisch.',
-    productMatch: 'Objektschutz & Alarm',
+    productMatch: 'BLOCKALARM® Gewerbeschutz',
     productUrl: 'https://www.blockalarm.de/gewerbe-alarmanlagen/'
   }
 ];
@@ -171,7 +171,7 @@ export const calculateScore = (answers: Answer[]): ScoringResult => {
       weight: 6, // Very high priority
       riskAnswer: true,
       recommendation: 'Unwissenheit schützt nicht vor Schaden. Eine professionelle Bestandsaufnahme ist dringend ratsam.',
-      productMatch: 'Kostenloser Sicherheits-Check vor Ort',
+      productMatch: 'BLOCKALARM® Sicherheits-Check vor Ort',
       productUrl: 'https://www.blockalarm.de/alarmanlage-kosten/'
     });
   }

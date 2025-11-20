@@ -14,7 +14,7 @@ export const BRAND_ASSETS = {
 // URLs for Blockalarm Product Pages - Verified URLs
 const URLS = {
   HOME: 'https://www.blockalarm.de/',
-  QOLSYS: 'https://www.blockalarm.de/qolsys-iq-panel-4/',
+  QANTUM: 'https://www.blockalarm.de/qantum-funkalarmanlage-sicherheit-fuer-ihr-zuhause/', // QANTUM® Funkalarmanlage
   OUTDOOR: 'https://www.blockalarm.de/alarmanlage-aussenbereich/',
   VIDEO: 'https://www.blockalarm.de/videoueberwachung/',
   COMMERCIAL: 'https://www.blockalarm.de/gewerbe-alarmanlagen/',
@@ -23,7 +23,9 @@ const URLS = {
   MECHANICAL: 'https://www.blockalarm.de/sicherheitstechnik/', 
   SMARTHOME: 'https://www.blockalarm.de/alarm-smart-home/', // Scharfschaltung Automatik & Anwesenheitssimulation
   SECURITY_CHECK: 'https://www.blockalarm.de/alarmanlage-kosten/', // Kostenloser Sicherheits-Check vor Ort
-  ACCESS_CONTROL: 'https://www.blockalarm.de/gewerbe-alarmanlagen/', // Zutrittskontrolle (Commercial page)
+  ACCESS_CONTROL: 'https://www.blockalarm.de/zutrittskontrolle/', // BLOXX® Schließsystem & Zutrittskontrolle
+  SENSORS: 'https://www.blockalarm.de/qantum-sensor/', // QANTUM® Sensoren
+  INSTALLATION: 'https://www.blockalarm.de/installation/', // Installation & Service
 };
 
 // Simulation Logic for BKA Data based on PLZ
@@ -66,7 +68,7 @@ export const QUESTIONS: Question[] = [
     weight: 3,
     riskAnswer: false, // No = Risk
     recommendation: 'Errichten Sie eine klare physische Barriere, um Gelegenheitsäter abzuschrecken.',
-    productMatch: 'Außenhautüberwachung',
+    productMatch: 'QANTUM® Außenhautüberwachung',
     productUrl: URLS.OUTDOOR
   },
   {
@@ -77,7 +79,7 @@ export const QUESTIONS: Question[] = [
     weight: 4,
     riskAnswer: true, // Yes = Risk
     recommendation: 'Reduzieren Sie Sichtbarrieren oder überwachen Sie tote Winkel elektronisch.',
-    productMatch: 'Videoüberwachung Außenbereich',
+    productMatch: 'BLOCKALARM® Videoüberwachung',
     productUrl: URLS.VIDEO
   },
 
@@ -90,8 +92,8 @@ export const QUESTIONS: Question[] = [
     weight: 3,
     riskAnswer: false,
     recommendation: 'Licht schreckt ab. Installieren Sie LED-Strahler mit Bewegungssensoren an allen Zugängen.',
-    productMatch: 'Gefahrenmeldeanlage mit Lichtsteuerung',
-    productUrl: URLS.QOLSYS
+    productMatch: 'QANTUM® Funkalarmanlage mit Smarthome',
+    productUrl: URLS.QANTUM
   },
   {
     id: 'q_light_2',
@@ -101,7 +103,7 @@ export const QUESTIONS: Question[] = [
     weight: 1,
     riskAnswer: false,
     recommendation: 'Sorgen Sie für schnelle Auffindbarkeit durch Sicherheitskräfte im Alarmfall.',
-    productMatch: 'Basisschutz für Immobilien',
+    productMatch: 'QANTUM® Hausalarmsystem',
     productUrl: URLS.HOUSE
   },
 
@@ -114,8 +116,8 @@ export const QUESTIONS: Question[] = [
     weight: 5,
     riskAnswer: false,
     recommendation: 'Rüsten Sie mechanische Sicherungen nach oder sichern Sie Fenster elektronisch ab.',
-    productMatch: 'Glasbruch & Öffnungsmelder',
-    productUrl: URLS.QOLSYS
+    productMatch: 'QANTUM® Sensor & Öffnungsmelder',
+    productUrl: URLS.QANTUM
   },
   {
     id: 'q_acc_2',
@@ -125,7 +127,7 @@ export const QUESTIONS: Question[] = [
     weight: 4,
     riskAnswer: true,
     recommendation: 'Sichern Sie Lichtschächte gegen Abheben und vergittern Sie Kellerfenster.',
-    productMatch: 'Elektronische Außenhautsicherung',
+    productMatch: 'QANTUM® Außenhautsicherung',
     productUrl: URLS.OUTDOOR
   },
   {
@@ -136,8 +138,8 @@ export const QUESTIONS: Question[] = [
     weight: 3,
     riskAnswer: true,
     recommendation: 'Entfernen Sie Aufstiegshilfen, die den Einstieg in obere Etagen erleichtern.',
-    productMatch: 'Vorwarn-Systeme',
-    productUrl: URLS.QOLSYS
+    productMatch: 'QANTUM® Außenhautüberwachung',
+    productUrl: URLS.OUTDOOR
   },
 
   // --- Mechanischer Schutz ---
@@ -149,7 +151,7 @@ export const QUESTIONS: Question[] = [
     weight: 3,
     riskAnswer: false,
     recommendation: 'Installieren Sie einen Sicherheitsbeschlag mit Zylinderschutz.',
-    productMatch: 'Sicherheitstechnik',
+    productMatch: 'BLOXX® Sicherheitstechnik',
     productUrl: URLS.MECHANICAL
   },
   {
@@ -160,7 +162,7 @@ export const QUESTIONS: Question[] = [
     weight: 3,
     riskAnswer: false,
     recommendation: 'Nutzen Sie Schwenkriegelschlösser für erhöhten Aufbruchwiderstand.',
-    productMatch: 'Sicherheitstechnik',
+    productMatch: 'BLOXX® Sicherheitstechnik',
     productUrl: URLS.MECHANICAL
   },
 
@@ -173,8 +175,8 @@ export const QUESTIONS: Question[] = [
     weight: 5,
     riskAnswer: false,
     recommendation: 'Eine VdS-konforme Alarmanlage ist der effektivste Schutz bei Abwesenheit.',
-    productMatch: 'Qolsys IQ Panel 4',
-    productUrl: URLS.QOLSYS
+    productMatch: 'Die Funkalarmanlage QANTUM®',
+    productUrl: URLS.QANTUM
   },
   {
     id: 'q_elec_2',
@@ -184,7 +186,7 @@ export const QUESTIONS: Question[] = [
     weight: 5,
     riskAnswer: false,
     recommendation: 'Nur eine Aufschaltung garantiert professionelle Intervention rund um die Uhr.',
-    productMatch: '24h Fernüberwachung',
+    productMatch: 'BLOCKALARM® 24h Fernüberwachung',
     productUrl: URLS.SERVICE
   },
   {
@@ -195,7 +197,7 @@ export const QUESTIONS: Question[] = [
     weight: 3,
     riskAnswer: false,
     recommendation: 'Videoüberwachung hilft bei der Täteridentifizierung und Alarmverifikation.',
-    productMatch: 'Videoüberwachung & KI',
+    productMatch: 'BLOCKALARM® Video & KI-Analyse',
     productUrl: URLS.VIDEO
   },
 
@@ -208,8 +210,8 @@ export const QUESTIONS: Question[] = [
     weight: 2,
     riskAnswer: false,
     recommendation: 'Tauschen Sie Schließzylinder aus, wenn Schlüssel verloren gegangen sind.',
-    productMatch: 'Zutrittskontrolle',
-    productUrl: URLS.ACCESS_CONTROL // Commercial/Gewerbe page for access control
+    productMatch: 'BLOXX® Zutrittskontrolle',
+    productUrl: URLS.ACCESS_CONTROL
   },
   {
     id: 'q_org_2',
@@ -219,8 +221,8 @@ export const QUESTIONS: Question[] = [
     weight: 4,
     riskAnswer: false,
     recommendation: 'Gewöhnen Sie sich eine strikte Verschlussroutine an ("Konsequentes Handeln").',
-    productMatch: 'Scharfschaltung Automatik',
-    productUrl: URLS.SMARTHOME // Smart Home Automation
+    productMatch: 'QANTUM® Smart Home Automatik',
+    productUrl: URLS.SMARTHOME
   },
   
   // --- Wertsachen & Risiko ---
@@ -232,7 +234,7 @@ export const QUESTIONS: Question[] = [
     weight: 4,
     riskAnswer: true,
     recommendation: 'Nutzen Sie zertifizierte Wertschutzschränke (Tresore) für Wertsachen.',
-    productMatch: 'Objektschutz & Alarm',
+    productMatch: 'BLOCKALARM® Gewerbeschutz',
     productUrl: URLS.COMMERCIAL
   },
   {
@@ -243,7 +245,7 @@ export const QUESTIONS: Question[] = [
     weight: 3,
     riskAnswer: true,
     recommendation: 'Simulieren Sie Anwesenheit durch Zeitschaltuhren oder Smart-Home-Lösungen.',
-    productMatch: 'Smarthome Simulation',
+    productMatch: 'QANTUM® Anwesenheitssimulation',
     productUrl: URLS.SMARTHOME
   }
 ];
