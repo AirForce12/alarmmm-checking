@@ -113,7 +113,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, onGoHome }) => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-brand-dark text-white py-8 mt-auto relative z-10 border-t border-gray-800">
+      <footer className="bg-brand-dark text-white py-8 mt-auto relative z-[1] border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex flex-col md:flex-row items-center gap-4 mb-4 md:mb-0 text-center md:text-left">
              <div className="flex flex-col sm:flex-row items-center opacity-90">

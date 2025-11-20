@@ -45,6 +45,7 @@ export const LockAnalyzer: React.FC = () => {
             ref={fileInputRef} 
             onChange={handleFileSelect} 
             accept="image/*" 
+            capture="environment"
             className="hidden" 
           />
 

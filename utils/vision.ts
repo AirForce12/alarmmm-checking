@@ -20,8 +20,8 @@ export const analyzeLockImage = async (base64Image: string): Promise<VisionAnaly
     const mimeMatch = base64Image.match(/^data:(image\/[a-zA-Z]+);base64,/);
     const mimeType = mimeMatch ? mimeMatch[1] : 'image/jpeg';
 
-    // Remove data URL prefix
-    const base64Data = base64Image.replace(/^data:image\/(png|jpeg|jpg|webp);base64,/, '');
+    // Remove data URL prefix - handle all image types including HEIF/HEIC from iOS
+    const base64Data = base64Image.replace(/^data:image\/[^;]+;base64,/, '');
 
     const prompt = `
       Du bist ein Sicherheitsexperte für Schließtechnik. Analysiere dieses Bild sorgfältig.
@@ -71,12 +71,24 @@ export const analyzeLockImage = async (base64Image: string): Promise<VisionAnaly
 
     return JSON.parse(jsonStr) as VisionAnalysisResult;
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Vision analysis failed:", error);
+    
+    const errorMessage = error?.message || String(error);
+    let reason = 'Die Bildanalyse war nicht möglich. Bitte versuchen Sie es mit einem Bild bei besserem Licht.';
+    
+    if (errorMessage.includes('quota') || errorMessage.includes('limit')) {
+      reason = 'Das monatliche Analyse-Kontingent wurde erreicht. Bitte versuchen Sie es später erneut.';
+    } else if (errorMessage.includes('network') || errorMessage.includes('Failed to fetch')) {
+      reason = 'Netzwerkfehler. Bitte überprüfen Sie Ihre Internetverbindung.';
+    } else if (errorMessage.includes('Invalid image') || errorMessage.includes('format')) {
+      reason = 'Bildformat nicht unterstützt. Bitte verwenden Sie JPG, PNG oder WebP.';
+    }
+    
     return {
       isLock: false,
       securityLevel: 'unknown',
-      reason: 'Die Bildanalyse war nicht möglich. Bitte versuchen Sie es mit einem Bild bei besserem Licht.'
+      reason
     };
   }
 };

@@ -201,21 +201,21 @@ export const SatelliteScanModal: React.FC<SatelliteScanModalProps> = ({ isOpen, 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-brand-dark/90 backdrop-blur-md animate-fade-in overflow-y-auto">
-      <div className="bg-white dark:bg-gray-900 w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden border border-gray-700 relative my-8">
+    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-start sm:justify-center p-0 sm:p-4 bg-brand-dark/90 backdrop-blur-md animate-fade-in overflow-y-auto">
+      <div className="bg-white dark:bg-gray-900 w-full sm:max-w-lg sm:rounded-2xl shadow-2xl border border-gray-700 relative my-0 sm:my-8 max-h-[100vh] sm:max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="bg-gray-900 p-4 flex justify-between items-center border-b border-gray-700 sticky top-0 z-50">
+        <div className="bg-gray-900 p-3 sm:p-4 flex justify-between items-center border-b border-gray-700 sticky top-0 z-50">
           <div className="flex items-center text-brand-red animate-pulse">
-            <Satellite className="w-5 h-5 mr-2" />
-            <span className="font-mono font-bold tracking-widest text-sm">LIVE SATELLITE LINK</span>
+            <Satellite className="w-4 sm:w-5 h-4 sm:h-5 mr-2" />
+            <span className="font-mono font-bold tracking-widest text-xs sm:text-sm">LIVE SATELLITE LINK</span>
           </div>
-          <button onClick={onClose} className="text-gray-500 hover:text-white transition-colors">
-            <X className="w-6 h-6" />
+          <button onClick={onClose} className="text-gray-500 hover:text-white transition-colors p-1">
+            <X className="w-5 sm:w-6 h-5 sm:h-6" />
           </button>
         </div>
 
         {/* Body */}
-        <div className="p-6 md:p-8 min-h-[400px] flex flex-col">
+        <div className="p-4 sm:p-6 md:p-8 min-h-[60vh] sm:min-h-[400px] flex flex-col">
           
           {/* STEP 1: ADDRESS */}
           {step === 'address' && (
@@ -235,14 +235,15 @@ export const SatelliteScanModal: React.FC<SatelliteScanModalProps> = ({ isOpen, 
                       value={address}
                       onChange={handleAddressInput}
                       onFocus={() => { if(suggestions.length > 0) setShowSuggestions(true); }}
-                      className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-brand-red focus:border-transparent text-gray-900 dark:text-white placeholder-gray-400 transition-all"
+                      className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-brand-red focus:border-transparent text-gray-900 dark:text-white placeholder-gray-400 transition-all text-base"
+                      style={{ fontSize: '16px' }}
                       placeholder="Straße, Hausnummer, PLZ Stadt"
                       autoFocus
                       autoComplete="off"
                     />
                     {/* Autocomplete Dropdown */}
                     {showSuggestions && suggestions.length > 0 && (
-                       <div className="absolute z-50 w-full bg-white dark:bg-gray-800 mt-1 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 max-h-48 overflow-y-auto">
+                       <div className="absolute z-50 w-full bg-white dark:bg-gray-800 mt-1 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 max-h-32 sm:max-h-48 overflow-y-auto">
                           {suggestions.map((item, idx) => (
                              <div 
                                key={idx}
@@ -270,7 +271,7 @@ export const SatelliteScanModal: React.FC<SatelliteScanModalProps> = ({ isOpen, 
           {/* STEP 2: SCANNING (REAL IMAGE) */}
           {step === 'scanning' && (
             <div className="flex flex-col items-center justify-center h-full">
-               <div className="relative w-full h-64 bg-gray-900 rounded-xl overflow-hidden border-2 border-gray-700 shadow-2xl mb-6 group">
+               <div className="relative w-full h-56 sm:h-64 bg-gray-900 rounded-xl overflow-hidden border-2 border-gray-700 shadow-2xl mb-4 sm:mb-6 group">
                  {/* REAL SATELLITE IMAGE */}
                  {satelliteUrl && (
                    <img 
@@ -370,7 +371,8 @@ export const SatelliteScanModal: React.FC<SatelliteScanModalProps> = ({ isOpen, 
                       type="text" 
                       placeholder="Vorname"
                       required
-                      className="w-full p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-red outline-none transition-all text-gray-900 dark:text-white text-sm"
+                      className="w-full p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-red outline-none transition-all text-gray-900 dark:text-white text-base"
+                      style={{ fontSize: '16px' }}
                       value={formData.firstName}
                       onChange={e => setFormData({...formData, firstName: e.target.value})}
                     />
@@ -378,7 +380,8 @@ export const SatelliteScanModal: React.FC<SatelliteScanModalProps> = ({ isOpen, 
                       type="text" 
                       placeholder="Nachname"
                       required
-                      className="w-full p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-red outline-none transition-all text-gray-900 dark:text-white text-sm"
+                      className="w-full p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-red outline-none transition-all text-gray-900 dark:text-white text-base"
+                      style={{ fontSize: '16px' }}
                       value={formData.lastName}
                       onChange={e => setFormData({...formData, lastName: e.target.value})}
                     />
@@ -388,7 +391,8 @@ export const SatelliteScanModal: React.FC<SatelliteScanModalProps> = ({ isOpen, 
                   type="email" 
                   placeholder="E-Mail Adresse"
                   required
-                  className="w-full p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-red outline-none transition-all text-gray-900 dark:text-white text-sm"
+                  className="w-full p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-red outline-none transition-all text-gray-900 dark:text-white text-base"
+                  style={{ fontSize: '16px' }}
                   value={formData.email}
                   onChange={e => setFormData({...formData, email: e.target.value})}
                 />
@@ -397,7 +401,8 @@ export const SatelliteScanModal: React.FC<SatelliteScanModalProps> = ({ isOpen, 
                   type="tel" 
                   placeholder="Mobilnummer (z.B. 017...)"
                   required
-                  className="w-full p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-red outline-none transition-all text-gray-900 dark:text-white text-sm"
+                  className="w-full p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-red outline-none transition-all text-gray-900 dark:text-white text-base"
+                  style={{ fontSize: '16px' }}
                   value={formData.phone}
                   onChange={e => setFormData({...formData, phone: e.target.value})}
                 />
@@ -430,7 +435,7 @@ export const SatelliteScanModal: React.FC<SatelliteScanModalProps> = ({ isOpen, 
           {step === 'success' && (
             <div className="animate-fade-in h-full flex flex-col items-center justify-center">
                {/* Success Visualization with Grid Sector Analysis */}
-               <div className="relative w-full h-56 rounded-xl overflow-hidden mb-6 border border-gray-700 shadow-lg">
+               <div className="relative w-full h-48 sm:h-56 rounded-xl overflow-hidden mb-6 border border-gray-700 shadow-lg">
                   {satelliteUrl && (
                     <img src={satelliteUrl} className="w-full h-full object-cover opacity-60 grayscale" />
                   )}
