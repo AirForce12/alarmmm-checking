@@ -184,8 +184,13 @@
           border-color: inherit !important;
         }
         
+        /* Fix sticky button states */
+        button:not(:active) {
+          background-color: initial !important;
+        }
+        
         /* Ensure buttons reset properly on touch devices */
-        .group button {
+        button {
           -webkit-tap-highlight-color: transparent;
           touch-action: manipulation;
         }
@@ -209,6 +214,30 @@
       @media (max-width: 768px) {
         button:active {
           animation: tap-pulse 0.2s ease-out;
+        }
+      }
+      
+      /* --- MOBILE BUTTON FIX --- */
+      @media (max-width: 768px) {
+        /* Keep red buttons red on mobile */
+        .bg-brand-red {
+          background-color: #C42126 !important;
+        }
+        
+        /* Prevent white background on mobile buttons */
+        button.bg-brand-red:not(:active) {
+          background-color: #C42126 !important;
+          color: white !important;
+        }
+        
+        /* Fixed elements behavior on mobile */
+        .fixed {
+          position: fixed !important;
+        }
+        
+        /* Modal must be above everything */
+        [class*="z-[99999]"] {
+          z-index: 99999 !important;
         }
       }
     </style>

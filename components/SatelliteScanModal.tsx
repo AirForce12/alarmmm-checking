@@ -201,10 +201,10 @@ export const SatelliteScanModal: React.FC<SatelliteScanModalProps> = ({ isOpen, 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-start sm:justify-center p-0 sm:p-4 bg-brand-dark/90 backdrop-blur-md animate-fade-in overflow-y-auto">
-      <div className="bg-white dark:bg-gray-900 w-full sm:max-w-lg sm:rounded-2xl shadow-2xl border border-gray-700 relative my-0 sm:my-8 max-h-[100vh] sm:max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-[99999] flex flex-col items-center justify-start sm:justify-center p-0 sm:p-4 bg-brand-dark/95 backdrop-blur-md animate-fade-in overflow-y-auto">
+      <div className="bg-white dark:bg-gray-900 w-full sm:max-w-lg sm:rounded-2xl shadow-2xl border border-gray-700 relative my-0 sm:my-8 h-full sm:h-auto sm:max-h-[90vh] overflow-y-auto flex flex-col">
         {/* Header */}
-        <div className="bg-gray-900 p-3 sm:p-4 flex justify-between items-center border-b border-gray-700 sticky top-0 z-50">
+        <div className="bg-gray-900 p-3 sm:p-4 flex justify-between items-center border-b border-gray-700 flex-shrink-0">
           <div className="flex items-center text-brand-red animate-pulse">
             <Satellite className="w-4 sm:w-5 h-4 sm:h-5 mr-2" />
             <span className="font-mono font-bold tracking-widest text-xs sm:text-sm">LIVE SATELLITE LINK</span>
@@ -215,7 +215,7 @@ export const SatelliteScanModal: React.FC<SatelliteScanModalProps> = ({ isOpen, 
         </div>
 
         {/* Body */}
-        <div className="p-4 sm:p-6 md:p-8 min-h-[60vh] sm:min-h-[400px] flex flex-col">
+        <div className="p-4 sm:p-6 md:p-8 flex-grow flex flex-col overflow-y-auto">
           
           {/* STEP 1: ADDRESS */}
           {step === 'address' && (
@@ -260,7 +260,7 @@ export const SatelliteScanModal: React.FC<SatelliteScanModalProps> = ({ isOpen, 
                 <button 
                   type="submit" 
                   disabled={loading || address.length < 5}
-                  className="w-full bg-brand-red text-white font-bold py-4 rounded-lg hover:bg-red-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center shadow-lg shadow-red-900/20"
+                  className="w-full bg-brand-red text-white font-bold py-4 rounded-lg md:hover:bg-red-700 active:bg-red-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center shadow-lg shadow-red-900/20"
                 >
                   {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <><Search className="w-4 h-4 mr-2" /> Satellitensuche starten</>}
                 </button>
@@ -423,7 +423,7 @@ export const SatelliteScanModal: React.FC<SatelliteScanModalProps> = ({ isOpen, 
 
                 <button 
                   type="submit" 
-                  className="w-full py-4 bg-brand-red text-white font-bold rounded-xl hover:bg-red-700 transition-all flex items-center justify-center shadow-lg shadow-red-900/20 mt-2"
+                  className="w-full py-4 bg-brand-red text-white font-bold rounded-xl md:hover:bg-red-700 active:bg-red-800 transition-colors flex items-center justify-center shadow-lg shadow-red-900/20 mt-2"
                 >
                   {loading ? <Loader2 className="animate-spin w-5 h-5" /> : "Jetzt Bericht anfordern"}
                 </button>

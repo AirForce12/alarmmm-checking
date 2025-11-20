@@ -15,7 +15,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, onGoHome }) => {
   }, [darkMode]);
 
   return (
-    <div className="min-h-screen flex flex-col font-sans relative overflow-x-hidden">
+    <div className="min-h-screen flex flex-col font-sans relative overflow-x-hidden" style={{ minHeight: '100vh', minHeight: '-webkit-fill-available' }}>
       {/* --- SECURITY-THEMED BACKGROUND PATTERN --- */}
       <div className="fixed inset-0 z-0 bg-gray-50 dark:bg-black transition-colors duration-500 overflow-hidden pointer-events-none">
         {/* Base gradient overlay - lighter */}
@@ -71,7 +71,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, onGoHome }) => {
       </div>
 
       {/* Header */}
-      <header className="bg-white/90 dark:bg-brand-dark/90 backdrop-blur-sm shadow-sm sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+      <header className="bg-white/90 dark:bg-brand-dark/90 backdrop-blur-sm shadow-sm sticky top-0 z-40 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           {/* Logo - Clickable */}
           <button 
@@ -108,7 +108,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, onGoHome }) => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow relative z-10">
+      <main className="flex-grow relative z-10 flex flex-col">
         {children}
       </main>
 
