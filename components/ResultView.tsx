@@ -147,7 +147,9 @@ export const ResultView: React.FC<ResultViewProps> = ({ result, onRestart, onGoH
                 <div key={cat}>
                   <div className="flex justify-between text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5">
                     <span>{cat}</span>
-                    <span className={score > 50 ? 'text-brand-red' : 'text-emerald-500'}>{score > 50 ? 'Risiko' : 'Sicher'}</span>
+                    <span className={score > 60 ? 'text-brand-red' : score > 30 ? 'text-amber-500' : 'text-emerald-500'}>
+                      {score > 60 ? 'Risiko' : score > 30 ? 'Mittel' : 'Sicher'}
+                    </span>
                   </div>
                   <div className="h-2.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                     <div className={`h-full rounded-full transition-all duration-1000 ease-out ${score > 60 ? 'bg-brand-red' : score > 30 ? 'bg-amber-500' : 'bg-emerald-500'}`} style={{ width: `${score}%` }}></div>
