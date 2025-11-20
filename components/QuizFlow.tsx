@@ -23,10 +23,11 @@ export const QuizFlow: React.FC<QuizFlowProps> = ({ onComplete, initialAnswers =
   const totalQuestions = QUESTIONS.length;
   const progress = ((currentIndex + (showPlzInput ? 1 : 0)) / (totalQuestions + 1)) * 100;
   
-  // Get the current question's answer (if any)
-  const currentAnswer = answers.find(a => a.questionId === currentQuestion.id);
-  const isJaSelected = currentAnswer?.value === true;
-  const isNeinSelected = currentAnswer?.value === false;
+  // Get the current question's answer (if any) - Strict check for current question only
+  const currentAnswer = answers.find(a => a.questionId === currentQuestion?.id);
+  // Only show selected state if answer exists AND belongs to current question
+  const isJaSelected = Boolean(currentAnswer && currentAnswer.questionId === currentQuestion.id && currentAnswer.value === true);
+  const isNeinSelected = Boolean(currentAnswer && currentAnswer.questionId === currentQuestion.id && currentAnswer.value === false);
 
   const handleAnswer = (value: boolean | null) => {
     if (isLocked) return;
@@ -80,6 +81,12 @@ export const QuizFlow: React.FC<QuizFlowProps> = ({ onComplete, initialAnswers =
       plzInputRef.current.focus();
     }
   }, [showPlzInput]);
+
+  // Reset button states when question changes - ensure clean state
+  useEffect(() => {
+    // Force a re-render by ensuring buttons reset
+    setIsLocked(false);
+  }, [currentIndex]);
 
   // Special Render for PLZ Step
   if (showPlzInput) {
@@ -168,22 +175,23 @@ export const QuizFlow: React.FC<QuizFlowProps> = ({ onComplete, initialAnswers =
         </div>
 
         {/* Buttons Container - Fixed Position */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 flex-shrink-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 flex-shrink-0" key={`buttons-${currentIndex}`}>
           <button
+            key={`ja-${currentIndex}`}
             onClick={() => handleAnswer(true)}
             disabled={isLocked}
-            className={`group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl transition-all duration-100 focus:outline-none shadow-sm hover:shadow-md transition-all duration-100 active:scale-[0.98] w-full text-left ${
+            className={`group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl focus:outline-none shadow-sm hover:shadow-md active:scale-[0.98] w-full text-left ${
               isJaSelected 
                 ? 'border-brand-red bg-red-50 dark:bg-red-900/20 dark:border-brand-red' 
-                : 'border-gray-200 dark:border-gray-700 hover:border-brand-red bg-white dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-900/10'
+                : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-brand-red hover:bg-red-50 dark:hover:bg-red-900/10'
             } dark:text-white`}
           >
-            <div className={`flex-shrink-0 p-2 rounded-full transition-colors mr-4 ${
+            <div className={`flex-shrink-0 p-2 rounded-full mr-4 ${
               isJaSelected 
                 ? 'bg-brand-red dark:bg-brand-red' 
                 : 'bg-gray-100 dark:bg-gray-700 group-hover:bg-white dark:group-hover:bg-brand-dark'
             }`}>
-               <Check className={`w-6 h-6 transition-colors ${
+               <Check className={`w-6 h-6 ${
                  isJaSelected 
                    ? 'text-white' 
                    : 'text-gray-600 dark:text-gray-300 group-hover:text-brand-red'
@@ -193,20 +201,21 @@ export const QuizFlow: React.FC<QuizFlowProps> = ({ onComplete, initialAnswers =
           </button>
 
           <button
+            key={`nein-${currentIndex}`}
             onClick={() => handleAnswer(false)}
             disabled={isLocked}
-            className={`group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl transition-all duration-100 focus:outline-none shadow-sm hover:shadow-md transition-all duration-100 active:scale-[0.98] w-full text-left ${
+            className={`group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl focus:outline-none shadow-sm hover:shadow-md active:scale-[0.98] w-full text-left transition-none ${
               isNeinSelected 
                 ? 'border-brand-red bg-red-50 dark:bg-red-900/20 dark:border-brand-red' 
                 : 'border-gray-200 dark:border-gray-700 hover:border-brand-red bg-white dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-900/10'
             } dark:text-white`}
           >
-            <div className={`flex-shrink-0 p-2 rounded-full transition-colors mr-4 ${
+            <div className={`flex-shrink-0 p-2 rounded-full mr-4 ${
               isNeinSelected 
                 ? 'bg-brand-red dark:bg-brand-red' 
                 : 'bg-gray-100 dark:bg-gray-700 group-hover:bg-white dark:group-hover:bg-brand-dark'
             }`}>
-               <X className={`w-6 h-6 transition-colors ${
+               <X className={`w-6 h-6 ${
                  isNeinSelected 
                    ? 'text-white' 
                    : 'text-gray-600 dark:text-gray-300 group-hover:text-brand-red'
