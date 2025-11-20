@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BLOCKALARM Einbruchschutz-Check</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                red: '#C42126',
+                redDark: '#A01B1F',
+                gray: '#E1E1E1',
+                dark: '#0F1115',
+                light: '#FAFAFA'
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            animation: {
+              'spin-slow': 'spin 4s linear infinite',
+              'spin-reverse-slow': 'spin 6s linear infinite reverse',
+              'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'fade-in': 'fadeIn 0.5s ease-out',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      /* --- STEALTH HEX MESH BACKGROUND --- */
+      .bg-hex-mesh {
+        background-color: transparent;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' stroke-width='0.5' stroke='rgba(100,100,100,0.08)' fill='none'/%3E%3C/svg%3E");
+        background-size: 40px 40px;
+      }
+      .dark .bg-hex-mesh {
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' stroke-width='0.5' stroke='rgba(255,255,255,0.05)' fill='none'/%3E%3C/svg%3E");
+      }
+
+      /* --- BREATHING AURORA --- */
+      .bg-aurora {
+        animation: auroraBreathe 12s ease-in-out infinite alternate;
+      }
+      @keyframes auroraBreathe {
+        0% { opacity: 0.3; transform: scale(1); }
+        100% { opacity: 0.6; transform: scale(1.1); }
+      }
+
+      /* --- 3D HOLOGRAPHIC WIREFRAME HOUSE --- */
+      .iso-scene {
+        perspective: 1000px;
+        transform-style: preserve-3d;
+      }
+      
+      .house-container {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        transform-style: preserve-3d;
+        animation: houseSpin 10s linear infinite;
+      }
+      @keyframes houseSpin {
+        0% { transform: rotateX(-15deg) rotateY(0deg); }
+        100% { transform: rotateX(-15deg) rotateY(360deg); }
+      }
+
+      .house-wall {
+        position: absolute;
+        width: 100px;
+        height: 80px;
+        background: rgba(196, 33, 38, 0.05);
+        border: 1px solid rgba(196, 33, 38, 0.4);
+        box-shadow: 0 0 10px rgba(196, 33, 38, 0.1);
+      }
+      
+      .wall-front { transform: translateZ(50px); }
+      .wall-back { transform: rotateY(180deg) translateZ(50px); }
+      .wall-right { transform: rotateY(90deg) translateZ(50px); }
+      .wall-left { transform: rotateY(-90deg) translateZ(50px); }
+      
+      .house-floor {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: rgba(196, 33, 38, 0.1);
+        border: 1px solid rgba(196, 33, 38, 0.4);
+        transform: rotateX(90deg) translateZ(-40px);
+        box-shadow: 0 0 20px rgba(196, 33, 38, 0.2);
+      }
+
+      .house-roof-panel {
+        position: absolute;
+        width: 100px;
+        height: 70px;
+        background: linear-gradient(to top, rgba(196, 33, 38, 0.1), transparent);
+        border: 1px solid rgba(196, 33, 38, 0.4);
+        transform-origin: bottom;
+      }
+      
+      .roof-front { transform: translateZ(50px) translateY(-70px) rotateX(30deg); height: 58px; border-bottom: none; }
+      .roof-back { transform: rotateY(180deg) translateZ(50px) translateY(-70px) rotateX(30deg); height: 58px; border-bottom: none; }
+      .roof-right { width: 100px; height: 58px; transform: rotateY(90deg) translateZ(50px) translateY(-70px) rotateX(30deg); border-bottom: none; }
+      .roof-left { width: 100px; height: 58px; transform: rotateY(-90deg) translateZ(50px) translateY(-70px) rotateX(30deg); border-bottom: none; }
+
+      /* Laser Scan Effect */
+      .laser-scan {
+        position: absolute;
+        left: -20px; right: -20px; top: -100px; bottom: -20px;
+        background: linear-gradient(to bottom, transparent, rgba(196,33,38,0.4), transparent);
+        transform: translateZ(0);
+        animation: laserScanMove 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      @keyframes laserScanMove {
+        0% { transform: translateY(-50px); opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { transform: translateY(150px); opacity: 0; }
+      }
+
+      /* --- DEEP SCAN ANIMATION (START VIEW) --- */
+      @keyframes deep-scan {
+        0% { 
+          top: 0%; 
+          opacity: 0; 
+          transform: translateX(0px);
+        }
+        10% { 
+          opacity: 1; 
+          transform: translateX(0px);
+        }
+        25% { 
+          transform: translateX(15px);
+        }
+        50% { 
+          transform: translateX(0px);
+        }
+        75% { 
+          transform: translateX(-15px);
+        }
+        90% { 
+          opacity: 1; 
+          transform: translateX(0px);
+        }
+        100% { 
+          top: 100%; 
+          opacity: 0; 
+          transform: translateX(0px);
+        }
+      }
+      .deep-scan-animation {
+        animation: deep-scan 4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+      }
+      
+      /* --- WAVE SCAN ANIMATION (Alternative wave pattern) --- */
+      @keyframes deep-scan-wave {
+        0% { 
+          top: 0%; 
+          opacity: 0; 
+          transform: translateX(0px);
+        }
+        10% { 
+          opacity: 1; 
+          transform: translateX(0px);
+        }
+        20% { 
+          transform: translateX(20px);
+        }
+        30% { 
+          transform: translateX(-10px);
+        }
+        40% { 
+          transform: translateX(15px);
+        }
+        50% { 
+          transform: translateX(-5px);
+        }
+        60% { 
+          transform: translateX(10px);
+        }
+        70% { 
+          transform: translateX(-15px);
+        }
+        80% { 
+          transform: translateX(5px);
+        }
+        90% { 
+          opacity: 1; 
+          transform: translateX(0px);
+        }
+        100% { 
+          top: 100%; 
+          opacity: 0; 
+          transform: translateX(0px);
+        }
+      }
+      .deep-scan-wave-animation {
+        animation: deep-scan-wave 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "recharts": "https://aistudiocdn.com/recharts@^3.4.1",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react-gauge-component": "https://esm.sh/react-gauge-component@1.2.64?external=react,react-dom"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-brand-light dark:bg-brand-dark text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
