@@ -175,6 +175,28 @@
       .deep-scan-animation {
         animation: professional-scan 3.5s linear infinite;
       }
+      
+      /* --- MOBILE HOVER FIX --- */
+      @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+        /* Remove all hover states on touch devices */
+        button:hover {
+          background-color: inherit !important;
+          border-color: inherit !important;
+        }
+        
+        /* Ensure buttons reset properly on touch devices */
+        .group button {
+          -webkit-tap-highlight-color: transparent;
+          touch-action: manipulation;
+        }
+        
+        /* Prevent any hover states from sticking */
+        * {
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          user-select: none;
+        }
+      }
     </style>
   <script type="importmap">
 {

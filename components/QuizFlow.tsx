@@ -137,7 +137,7 @@ export const QuizFlow: React.FC<QuizFlowProps> = ({ onComplete, initialAnswers =
          </div>
          
          <div className="mt-auto pt-6 border-t border-gray-100 dark:border-gray-800">
-            <button onClick={handleBack} className="flex items-center text-sm font-semibold text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors p-2 -ml-2">
+            <button onClick={handleBack} className="flex items-center text-sm font-semibold text-gray-500 md:hover:text-gray-900 dark:md:hover:text-white transition-colors p-2 -ml-2">
               <ArrowLeft className="w-4 h-4 mr-2" /> Zurück
             </button>
          </div>
@@ -180,21 +180,21 @@ export const QuizFlow: React.FC<QuizFlowProps> = ({ onComplete, initialAnswers =
             key={`ja-${currentIndex}`}
             onClick={() => handleAnswer(true)}
             disabled={isLocked}
-            className={`group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl focus:outline-none shadow-sm hover:shadow-md active:scale-[0.98] w-full text-left ${
+            className={`group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl focus:outline-none shadow-sm active:scale-[0.98] w-full text-left ${
               isJaSelected 
                 ? 'border-brand-red bg-red-50 dark:bg-red-900/20 dark:border-brand-red' 
-                : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-brand-red hover:bg-red-50 dark:hover:bg-red-900/10'
+                : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 md:hover:border-brand-red md:hover:bg-red-50 dark:md:hover:bg-red-900/10'
             } dark:text-white`}
           >
             <div className={`flex-shrink-0 p-2 rounded-full mr-4 ${
               isJaSelected 
                 ? 'bg-brand-red dark:bg-brand-red' 
-                : 'bg-gray-100 dark:bg-gray-700 group-hover:bg-white dark:group-hover:bg-brand-dark'
+                : 'bg-gray-100 dark:bg-gray-700 md:group-hover:bg-white dark:md:group-hover:bg-brand-dark'
             }`}>
                <Check className={`w-6 h-6 ${
                  isJaSelected 
                    ? 'text-white' 
-                   : 'text-gray-600 dark:text-gray-300 group-hover:text-brand-red'
+                   : 'text-gray-600 dark:text-gray-300 md:group-hover:text-brand-red'
                }`} />
             </div>
             <span>Ja</span>
@@ -204,21 +204,21 @@ export const QuizFlow: React.FC<QuizFlowProps> = ({ onComplete, initialAnswers =
             key={`nein-${currentIndex}`}
             onClick={() => handleAnswer(false)}
             disabled={isLocked}
-            className={`group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl focus:outline-none shadow-sm hover:shadow-md active:scale-[0.98] w-full text-left transition-none ${
+            className={`group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl focus:outline-none shadow-sm active:scale-[0.98] w-full text-left ${
               isNeinSelected 
                 ? 'border-brand-red bg-red-50 dark:bg-red-900/20 dark:border-brand-red' 
-                : 'border-gray-200 dark:border-gray-700 hover:border-brand-red bg-white dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-900/10'
+                : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 md:hover:border-brand-red md:hover:bg-red-50 dark:md:hover:bg-red-900/10'
             } dark:text-white`}
           >
             <div className={`flex-shrink-0 p-2 rounded-full mr-4 ${
               isNeinSelected 
                 ? 'bg-brand-red dark:bg-brand-red' 
-                : 'bg-gray-100 dark:bg-gray-700 group-hover:bg-white dark:group-hover:bg-brand-dark'
+                : 'bg-gray-100 dark:bg-gray-700 md:group-hover:bg-white dark:md:group-hover:bg-brand-dark'
             }`}>
                <X className={`w-6 h-6 ${
                  isNeinSelected 
                    ? 'text-white' 
-                   : 'text-gray-600 dark:text-gray-300 group-hover:text-brand-red'
+                   : 'text-gray-600 dark:text-gray-300 md:group-hover:text-brand-red'
                }`} />
             </div>
             <span>Nein</span>
@@ -238,7 +238,7 @@ export const QuizFlow: React.FC<QuizFlowProps> = ({ onComplete, initialAnswers =
         <button
           onClick={() => handleAnswer(null)}
           disabled={isLocked}
-          className="flex items-center text-sm font-semibold text-gray-400 hover:text-brand-red transition-colors p-2 -mr-2"
+          className="flex items-center text-sm font-semibold text-gray-400 md:hover:text-brand-red transition-colors p-2 -mr-2"
         >
           <HelpCircle className="w-4 h-4 mr-2" /> Weiß nicht
         </button>
