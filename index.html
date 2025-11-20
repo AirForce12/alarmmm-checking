@@ -155,84 +155,25 @@
         100% { transform: translateY(150px); opacity: 0; }
       }
 
-      /* --- DEEP SCAN ANIMATION (START VIEW) --- */
-      @keyframes deep-scan {
+      /* --- PROFESSIONAL SCAN ANIMATION (START VIEW) --- */
+      @keyframes professional-scan {
         0% { 
-          top: 0%; 
-          opacity: 0; 
-          transform: translateX(0px);
+          top: -10%; 
+          opacity: 0;
         }
-        10% { 
-          opacity: 1; 
-          transform: translateX(0px);
+        5% { 
+          opacity: 1;
         }
-        25% { 
-          transform: translateX(15px);
-        }
-        50% { 
-          transform: translateX(0px);
-        }
-        75% { 
-          transform: translateX(-15px);
-        }
-        90% { 
-          opacity: 1; 
-          transform: translateX(0px);
+        95% { 
+          opacity: 1;
         }
         100% { 
-          top: 100%; 
-          opacity: 0; 
-          transform: translateX(0px);
+          top: 110%; 
+          opacity: 0;
         }
       }
       .deep-scan-animation {
-        animation: deep-scan 4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-      }
-      
-      /* --- WAVE SCAN ANIMATION (Alternative wave pattern) --- */
-      @keyframes deep-scan-wave {
-        0% { 
-          top: 0%; 
-          opacity: 0; 
-          transform: translateX(0px);
-        }
-        10% { 
-          opacity: 1; 
-          transform: translateX(0px);
-        }
-        20% { 
-          transform: translateX(20px);
-        }
-        30% { 
-          transform: translateX(-10px);
-        }
-        40% { 
-          transform: translateX(15px);
-        }
-        50% { 
-          transform: translateX(-5px);
-        }
-        60% { 
-          transform: translateX(10px);
-        }
-        70% { 
-          transform: translateX(-15px);
-        }
-        80% { 
-          transform: translateX(5px);
-        }
-        90% { 
-          opacity: 1; 
-          transform: translateX(0px);
-        }
-        100% { 
-          top: 100%; 
-          opacity: 0; 
-          transform: translateX(0px);
-        }
-      }
-      .deep-scan-wave-animation {
-        animation: deep-scan-wave 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        animation: professional-scan 3.5s linear infinite;
       }
     </style>
   <script type="importmap">

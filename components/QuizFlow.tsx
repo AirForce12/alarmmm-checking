@@ -22,6 +22,11 @@ export const QuizFlow: React.FC<QuizFlowProps> = ({ onComplete, initialAnswers =
   const currentQuestion = QUESTIONS[currentIndex];
   const totalQuestions = QUESTIONS.length;
   const progress = ((currentIndex + (showPlzInput ? 1 : 0)) / (totalQuestions + 1)) * 100;
+  
+  // Get the current question's answer (if any)
+  const currentAnswer = answers.find(a => a.questionId === currentQuestion.id);
+  const isJaSelected = currentAnswer?.value === true;
+  const isNeinSelected = currentAnswer?.value === false;
 
   const handleAnswer = (value: boolean | null) => {
     if (isLocked) return;
@@ -167,10 +172,22 @@ export const QuizFlow: React.FC<QuizFlowProps> = ({ onComplete, initialAnswers =
           <button
             onClick={() => handleAnswer(true)}
             disabled={isLocked}
-            className="group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl transition-all duration-100 focus:outline-none shadow-sm hover:shadow-md border-gray-200 dark:border-gray-700 hover:border-brand-red bg-white dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-900/10 dark:text-white active:scale-[0.98] w-full text-left"
+            className={`group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl transition-all duration-100 focus:outline-none shadow-sm hover:shadow-md transition-all duration-100 active:scale-[0.98] w-full text-left ${
+              isJaSelected 
+                ? 'border-brand-red bg-red-50 dark:bg-red-900/20 dark:border-brand-red' 
+                : 'border-gray-200 dark:border-gray-700 hover:border-brand-red bg-white dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-900/10'
+            } dark:text-white`}
           >
-            <div className="flex-shrink-0 p-2 rounded-full transition-colors bg-gray-100 dark:bg-gray-700 group-hover:bg-white dark:group-hover:bg-brand-dark mr-4">
-               <Check className="w-6 h-6 text-gray-600 dark:text-gray-300 group-hover:text-brand-red" />
+            <div className={`flex-shrink-0 p-2 rounded-full transition-colors mr-4 ${
+              isJaSelected 
+                ? 'bg-brand-red dark:bg-brand-red' 
+                : 'bg-gray-100 dark:bg-gray-700 group-hover:bg-white dark:group-hover:bg-brand-dark'
+            }`}>
+               <Check className={`w-6 h-6 transition-colors ${
+                 isJaSelected 
+                   ? 'text-white' 
+                   : 'text-gray-600 dark:text-gray-300 group-hover:text-brand-red'
+               }`} />
             </div>
             <span>Ja</span>
           </button>
@@ -178,10 +195,22 @@ export const QuizFlow: React.FC<QuizFlowProps> = ({ onComplete, initialAnswers =
           <button
             onClick={() => handleAnswer(false)}
             disabled={isLocked}
-            className="group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl transition-all duration-100 focus:outline-none shadow-sm hover:shadow-md border-gray-200 dark:border-gray-700 hover:border-brand-red bg-white dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-900/10 dark:text-white active:scale-[0.98] w-full text-left"
+            className={`group relative flex items-center p-4 md:p-6 text-lg font-bold border-2 rounded-2xl transition-all duration-100 focus:outline-none shadow-sm hover:shadow-md transition-all duration-100 active:scale-[0.98] w-full text-left ${
+              isNeinSelected 
+                ? 'border-brand-red bg-red-50 dark:bg-red-900/20 dark:border-brand-red' 
+                : 'border-gray-200 dark:border-gray-700 hover:border-brand-red bg-white dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-900/10'
+            } dark:text-white`}
           >
-            <div className="flex-shrink-0 p-2 rounded-full transition-colors bg-gray-100 dark:bg-gray-700 group-hover:bg-white dark:group-hover:bg-brand-dark mr-4">
-               <X className="w-6 h-6 text-gray-600 dark:text-gray-300 group-hover:text-brand-red" />
+            <div className={`flex-shrink-0 p-2 rounded-full transition-colors mr-4 ${
+              isNeinSelected 
+                ? 'bg-brand-red dark:bg-brand-red' 
+                : 'bg-gray-100 dark:bg-gray-700 group-hover:bg-white dark:group-hover:bg-brand-dark'
+            }`}>
+               <X className={`w-6 h-6 transition-colors ${
+                 isNeinSelected 
+                   ? 'text-white' 
+                   : 'text-gray-600 dark:text-gray-300 group-hover:text-brand-red'
+               }`} />
             </div>
             <span>Nein</span>
           </button>

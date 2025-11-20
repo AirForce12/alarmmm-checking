@@ -12,7 +12,6 @@ export const StartView: React.FC<StartViewProps> = ({ onStart, onOpenScan, liveS
   const [highlightStart, setHighlightStart] = useState(false);
   const scanContainerRef = useRef<HTMLDivElement>(null);
   const [containerHeight, setContainerHeight] = useState(282); // Default mobile height
-  const [useWaveAnimation, setUseWaveAnimation] = useState(false);
   
   useEffect(() => {
     const updateDimensions = () => {
@@ -25,15 +24,6 @@ export const StartView: React.FC<StartViewProps> = ({ onStart, onOpenScan, liveS
     updateDimensions();
     window.addEventListener('resize', updateDimensions);
     return () => window.removeEventListener('resize', updateDimensions);
-  }, []);
-  
-  // Randomly switch between straight and wave animation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setUseWaveAnimation(Math.random() > 0.5); // 50% chance for wave
-    }, 5000); // Change every 5 seconds
-    
-    return () => clearInterval(interval);
   }, []);
   
   // Calculate scanner dimensions based on container height
@@ -171,8 +161,8 @@ export const StartView: React.FC<StartViewProps> = ({ onStart, onOpenScan, liveS
                     {/* 2. Digital Noise Texture */}
                     <div className="absolute inset-0 opacity-[0.08] mix-blend-overlay pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
 
-                    {/* 3. Professional Wide-Area Scanner Beam - Dynamic & Smooth with Wave Motion */}
-                    <div className={`absolute inset-x-0 z-20 pointer-events-none ${useWaveAnimation ? 'deep-scan-wave-animation' : 'deep-scan-animation'}`}>
+                    {/* 3. Professional Scanner Beam - Clean & Smooth */}
+                    <div className="absolute inset-x-0 z-20 pointer-events-none deep-scan-animation">
                       <div className="relative -translate-y-1/2" style={{ height: `${scannerHeight}px` }}>
                         {/* Outer Glow Layer - Softest, Widest Shadow */}
                         <div 
